@@ -2,24 +2,12 @@ site_name: "Datastorm"
 
 site_author: "Javier Luna Molina"
 
-# This tells pydocmd which pages to generate from which Python modules,
-# functions and classes. At the first level is the page name, below that
-# is a tree of Python member names (modules, classes, etc.) that should be
-# documented. Higher indentation leads to smaller header size.
-generate:
-- datastorm/datastorm.md:
-  - datastorm:
-    - datastorm.datastorm++     # (+ to include members)
-- datastorm/objects.md:
-  - datastorm.objects++          # (++ to include members, and their members)
-
 # MkDocs pages configuration. The `<<` operator is sugar added by pydocmd
 # that allows you to use an external Markdown file (eg. your project's README)
 # in the documentation. The path must be relative to current working directory.
 pages:
-- Home: index.md << ../README.md
-- datastorm.datastorm:
-  - Shit bruh: datastorm/objects.md
+- Home: ../README.md
+
 
 # These options all show off their default values. You don't have to add
 # them to your configuration if you're fine with the default.

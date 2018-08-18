@@ -10,8 +10,8 @@ google-cloud-datastore = "*"
 twine = "*"
 python-dotenv = "*"
 coverage = "*"
-pydoc-markdown = "*"
 coverage-badge = "*"
+mkdocs = "*"
 
 [requires]
 python_version = "3.6"
