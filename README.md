@@ -1,5 +1,7 @@
-#Datastorm
-![]()
+# Datastorm
+
+[[docs/_static/coverage.svg]]
+
 ## Installation
 
 You can install it as `pip install datastorm`
