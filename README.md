@@ -1,76 +1,78 @@
-# Datastorm
+#Datastorm
+![]()
+## Installation
 
-## What is it?
+You can install it as `pip install datastorm`
 
-**Datastorm** is an attempt to make your datastore experience painless.
+## Quickstart
 
-How am I going to do that? I'll show you!
-
-
-## How to
-
-### Connect to DataStore
+First, let's import and declare a datastorm object:
 
 ```python
 from datastorm.datastorm import DataStorm
 
 datastorm = DataStorm("example-gcloud-project")
 ```
+Where `example-gcloud-project` is the name of your Google Cloud Project.
 
-### Define an entity
+If no project name is given it will attempt to get it from the environmental variable `DATASTORE_PROJECT_ID`.
+
+### Define entity
+
+To define an entity you have to create a class. Don't worry, this isn't a schema.
 
 ```python
 class EntityName(datastorm.DSEntity): 
     __kind__ = "EntityName"
+    
+    foo = "bar"
+    
 ```
 
-### Query for a field 
+In this Entity you have defined a default property `foo` with a default value of `"bar"`.
+### Create entity
+Creating is plain simple.
 
 ```python
-results = EntityName.query.filter(EntityName.foo == "bar").all()
+e = EntityName("key-goes-here", foo="bar2", foo2=23)
+e.save()
 
-for result in results:
-    do_stuff(result) # type(result) is EntityName
-```
-
-### Query several filters
-```python
-results = EntityName.query.filter(EntityName.foo == "bar").filter(EntityName.numeric_foo < 2).all()
-
-for result in results:
-    do_stuff(result) # type(result) is EntityName
-```
-
-### Create or update entity
-```python
-e = EntityName()
 e.foo = "bar"
-e.save()
-e.foo = "rab"
-e.bar = True
+e.new_var = 2.03 #You can define new attributes on the fly
+
 e.save()
 ```
 
-### Batch create/update entities
+### Simple query
+Querying syntax is pretty straighforward.
+
 ```python
-datastorm.save_multi(entity_list)
+result = EntityName.query.filter(EntityName.foo == "bar").first()
+
+result = EntityName.query.get("key-goes-here") # Fetch by key
+
+for result in EntityName.query.all(): # .all() returns a generator
+	do_stuff(result) # result is an EntityName object
+
 ```
 
-## Install
-```bash
-pip install datastorm
+### Delete
+I'm running out of expressions to describe how dead simple things arround here are.
+
+```python
+e = EntityName.query.get("key-goes-here")
+
+e.delete()
 ```
 
-## Test
+## Tests
 For running the tests you'll need a [Datastore emulator](https://cloud.google.com/datastore/docs/tools/datastore-emulator).
+
+You'll also need the `DATASTORE_EMULATOR_HOST` environmental variable set pointing to your datastore emulator address (port included). You can use `.env` files. 
 
 The recommended command for running it is:
 ````gcloud beta emulators datastore start --consistency=1````
 
 You can pass the tests with ````make test````
 
-## Disclaimer
-
-Proper documentation will roll in a few days.
-
-Fork from [OrbitalAds/dittostore](https://github.com/OrbitalAds/dittostore), which I also created.
+I know it seems a little bit complicated, I will work to try and make things easier in the futue. Pinky promise.

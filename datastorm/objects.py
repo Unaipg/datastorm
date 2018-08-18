@@ -131,6 +131,7 @@ class BaseEntity:
         self._save_offline()
 
     def save(self):
+        """Upsert the object to Datastore."""
         self._save_offline()
         self.__datastorm_client__.put(self.__raw_entity)
 
