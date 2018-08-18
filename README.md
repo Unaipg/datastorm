@@ -1,6 +1,7 @@
 # Datastorm
 
-[[docs/_static/coverage.svg]]
+![Coverage on feature/docs](https://raw.githubusercontent.com/JavierLuna/datastorm/feature/docs/docs/_static/coverage.svg?sanitize=true)
+![Current version](https://img.shields.io/badge/current%20version-0.0.0a1-blue.svg)
 
 ## Installation
 
@@ -59,7 +60,7 @@ for result in EntityName.query.all(): # .all() returns a generator
 ```
 
 ### Delete
-I'm running out of expressions to describe how dead simple things arround here are.
+I'm running out of expressions to describe how dead simple things are arround here.
 
 ```python
 e = EntityName.query.get("key-goes-here")
