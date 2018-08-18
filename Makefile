@@ -20,7 +20,7 @@ clean:
 docs: coverage
 	-rm docs/_static/coverage.svg
 	coverage-badge -o docs/_static/coverage.svg
-	cd docs && mkdocs build && touch .nojekyll
+	mkdocs build && touch .nojekyll
 
 upload:
 	python setup.py bdist_wheel
